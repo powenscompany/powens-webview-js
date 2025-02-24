@@ -28,7 +28,7 @@ Download `powens-webview.js` & `powens-webview.d.ts` from the [`lib/` folder](ht
 
 ### Open the Webview
 ```typescript
-import PowensWebviewElement, { PowensWebviewFlow, PowensWebviewLanguage, PowensWebviewMessage } from '@powenscompany/webview-js/powens-webview';
+import PowensWebviewElement, { PowensWebviewFlow, PowensWebviewLanguage, PowensWebviewMessage } from '@powenscompany/webview-js';
 
 // Get `<powens-webview>` element reference
 const powensWebview = document.querySelector('powens-webview') as PowensWebviewElement;
@@ -74,7 +74,7 @@ Load the web component by importing it in `angular.json`
     "options": {
       "scripts": [
         {
-          "input": "./node_modules/@powenscompany/webview-js/powens-webview.js",
+          "input": "./node_modules/@powenscompany/webview-js/lib/powens-webview.js",
           "inject": false,
           "bundleName": "powens-webview"
         }
@@ -87,7 +87,7 @@ Load the web component by importing it in `angular.json`
 ## React
 Declare the `powens-webview` custom element to be able to use it in your JSX & TSX code
 ```typescript
-import PowensWebviewElement from '@powenscompany/webview-js/powens-webview';
+import PowensWebviewElement from '@powenscompany/webview-js';
 
 declare global {
   namespace JSX {
