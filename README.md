@@ -98,6 +98,10 @@ declare global {
 }
 ```
 
+# Examples
+
+Check out the [sample projects](https://github.com/powenscompany/powens-webview-js/tree/main/examples) for a complete example of integration.
+
 # Types reference
 For more information about Webview flows, parameters and callback parameters, please check [our documentation](https://docs.powens.com/api-reference/overview/webview#implementation-guidelines).
 
