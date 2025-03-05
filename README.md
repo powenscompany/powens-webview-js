@@ -90,7 +90,7 @@ Declare the `powens-webview` custom element to be able to use it in your JSX & T
 import PowensWebviewElement from '@powenscompany/webview-js';
 
 declare global {
-  namespace JSX {
+  namespace React.JSX {
     interface IntrinsicElements {
       ['powens-webview']: CustomElement<PowensWebviewElement>;
     }
