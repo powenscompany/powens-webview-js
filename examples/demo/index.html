@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Powens Webview - Interactive Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://console.powens.com/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Production: use unpkg -->
+  <!-- <script type="module" src="https://unpkg.com/@powenscompany/webview-js"></script> -->
+  <!-- Development: use local build -->
+  <script type="module" src="../../lib/powens-webview.js"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <img src="https://www.powens.com/wp-content/uploads/2024/09/powens_logo_Gradient-3.svg" alt="Powens" class="logo-img">
+        <span class="logo-text">Webview SDK</span>
+      </a>
+      <span class="version-badge">Interactive Demo</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-container">
+      <form id="webview-form" class="form-panel">
+        <h3>General Settings</h3>
+        
+        <div class="form-group">
+          <label for="flow">Flow <span class="required">*</span></label>
+          <select id="flow">
+            <option value="connect">Connect</option>
+            <option value="reconnect">Reconnect</option>
+            <option value="manage">Manage</option>
+            <option value="payment">Payment</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="domain">Domain <span class="required">*</span></label>
+          <input id="domain" type="text" value="" placeholder="example.biapi.pro" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clientId">Client ID <span class="required">*</span></label>
+          <input id="clientId" type="text" value="" placeholder="12345678" required>
+        </div>
+
+        <div class="form-group">
+          <label for="lang">Language</label>
+          <select id="lang">
+            <option value="">-- Select --</option>
+            <option value="en" selected>English</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="nl">Dutch</option>
+            <option value="it">Italian</option>
+            <option value="es">Spanish</option>
+            <option value="pt">Portuguese</option>
+          </select>
+        </div>
+
+        <h3>Flow Parameters</h3>
+
+        <!-- Required fields per flow -->
+        <div class="form-group" id="redirectUri-group">
+          <label for="redirectUri">Redirect URI <span class="required" id="redirectUri-required">*</span></label>
+          <input id="redirectUri" type="text" placeholder="https://example.com/callback">
+          <span class="field-hint">Must be registered in the Powens Console for your application</span>
+        </div>
+
+        <div class="form-group" id="code-group">
+          <label for="code">Code <span class="required" id="code-required"></span></label>
+          <input id="code" type="text" placeholder="User-scoped temporary code">
+        </div>
+
+        <div class="form-group" id="connectionId-group">
+          <label for="connectionId">Connection ID <span class="required" id="connectionId-required">*</span></label>
+          <input id="connectionId" type="number" placeholder="1">
+        </div>
+
+        <div class="form-group" id="paymentId-group">
+          <label for="paymentId">Payment ID <span class="required">*</span></label>
+          <input id="paymentId" type="number" placeholder="123456">
+        </div>
+
+        <!-- Optional parameters collapsible -->
+        <div class="collapsible-section" id="optional-section">
+          <button type="button" class="collapsible-header" id="optional-toggle">
+            <span>Optional Parameters — <span id="optional-flow-name">Connect</span></span>
+            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="collapsible-content" id="optional-content">
+            <div class="form-group" id="redirectUri-optional-group">
+              <label for="redirectUri-optional">Redirect URI</label>
+              <input id="redirectUri-optional" type="text" placeholder="https://example.com/callback">
+              <span class="field-hint">Must be registered in the Powens Console for your application</span>
+            </div>
+
+            <div class="form-group" id="code-optional-group">
+              <label for="code-optional">Code</label>
+              <input id="code-optional" type="text" placeholder="User-scoped temporary code">
+            </div>
+
+            <div class="form-group" id="connectionId-optional-group">
+              <label for="connectionId-optional">Connection ID</label>
+              <input id="connectionId-optional" type="number" placeholder="46">
+            </div>
+
+            <div class="form-group" id="state-group">
+              <label for="state">State</label>
+              <input id="state" type="text" placeholder="MY_STATE">
+            </div>
+
+            <div class="form-group" id="connectorIds-group">
+              <label for="connectorIds">Connector IDs <span class="hint">(comma-separated)</span></label>
+              <input id="connectorIds" type="text" placeholder="1, 2, 3">
+            </div>
+
+            <div class="form-group" id="connectorUuids-group">
+              <label for="connectorUuids">Connector UUIDs <span class="hint">(comma-separated)</span></label>
+              <textarea id="connectorUuids" rows="2" placeholder="uuid1, uuid2, uuid3"></textarea>
+            </div>
+
+            <div class="form-group" id="connectorCapabilities-group">
+              <label for="connectorCapabilities">Connector Capabilities <span class="hint">(comma-separated: bank, bankwealth, document)</span></label>
+              <input id="connectorCapabilities" type="text" placeholder="bank, bankwealth">
+            </div>
+
+            <div class="form-group" id="connectorCountry-group">
+              <label for="connectorCountry">Connector Country</label>
+              <input id="connectorCountry" type="text" placeholder="FR" maxlength="2">
+              <span class="field-hint">The connector_country parameter must be a valid ISO 3166-1 alpha-2 country code</span>
+            </div>
+
+            <div class="form-group" id="accountTypes-group">
+              <label for="accountTypes">Account Types <span class="hint">(comma-separated)</span></label>
+              <input id="accountTypes" type="text" placeholder="checking, card, savings">
+            </div>
+
+            <div class="form-group" id="accountIbans-group">
+              <label for="accountIbans">Account IBANs <span class="hint">(comma-separated)</span></label>
+              <textarea id="accountIbans" rows="2" placeholder="FR76..., FR76..."></textarea>
+            </div>
+
+            <div class="form-group" id="accountUsages-group">
+              <label for="accountUsages">Account Usages <span class="hint">(comma-separated: PRIV, ORGA)</span></label>
+              <input id="accountUsages" type="text" placeholder="PRIV, ORGA">
+            </div>
+
+            <div class="form-group" id="maxConnections-group">
+              <label for="maxConnections">Max Connections</label>
+              <input id="maxConnections" type="number" min="1" placeholder="3">
+            </div>
+
+            <div class="form-group" id="connectorFieldValues-group">
+              <label for="connectorFieldValues">Connector Field Values <span class="hint">(JSON)</span></label>
+              <textarea id="connectorFieldValues" rows="3" placeholder='{"uuid": {"field": "value"}}'></textarea>
+            </div>
+
+            <div class="form-group checkbox-single" id="resetCredentials-group">
+              <label>
+                <input type="checkbox" id="resetCredentials">
+                Reset Credentials
+              </label>
+            </div>
+
+            <div class="form-group" id="connectionSources-group">
+              <label for="connectionSources">Connection Sources <span class="hint">(comma-separated)</span></label>
+              <input id="connectionSources" type="text" placeholder="openapi">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit">Launch Webview</button>
+      </form>
+
+      <div class="sidebar">
+        <div class="code-panel">
+          <div class="panel-header">
+            <span>Configuration</span>
+            <button type="button" id="copy-btn" class="copy-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy
+            </button>
+          </div>
+          <pre id="code-preview" class="code-preview"></pre>
+        </div>
+
+        <div class="response-panel">
+          <div class="panel-header">
+            <span><span class="status-dot" id="status-dot"></span> Response</span>
+            <button type="button" id="copy-result-btn" class="copy-btn" hidden>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy
+            </button>
+          </div>
+          <pre id="result" class="response-content">Waiting for webview response...</pre>
+        </div>
+      </div>
+    </div>
+
+    <section class="resources-section">
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h3><span class="icon">📖</span> Documentation</h3>
+          <p>Learn about Webview flows, parameters, and callback handling in our comprehensive API documentation.</p>
+          <ul>
+            <li><a href="https://docs.powens.com/api-reference/overview/webview#implementation-guidelines" target="_blank">Implementation Guidelines</a></li>
+            <li><a href="https://docs.powens.com/api-reference/overview/webview#parameters" target="_blank">Parameters Reference</a></li>
+            <li><a href="https://docs.powens.com/api-reference/overview/webview#callback-parameters" target="_blank">Callback Parameters</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <h3><span class="icon">🛠️</span> Sample Projects</h3>
+          <p>Get started quickly with our example implementations for popular frameworks.</p>
+          <ul>
+            <li><a href="https://github.com/powenscompany/powens-webview-js/tree/main/examples/vanilla" target="_blank">Vanilla JavaScript</a></li>
+            <li><a href="https://github.com/powenscompany/powens-webview-js/tree/main/examples/react" target="_blank">React + TypeScript</a></li>
+            <li><a href="https://github.com/powenscompany/powens-webview-js/tree/main/examples/angular" target="_blank">Angular 19</a></li>
+          </ul>
+        </div>
+
+        <div class="resource-card">
+          <h3><span class="icon">📦</span> Resources</h3>
+          <p>Access our source code, package registry, and stay updated with the latest releases.</p>
+          <ul>
+            <li><a href="https://github.com/powenscompany/powens-webview-js" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://www.npmjs.com/package/@powenscompany/webview-js" target="_blank">NPM Package</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://powens.com" target="_blank">Powens</a>
+        <a href="https://docs.powens.com" target="_blank">Documentation</a>
+        <a href="https://github.com/powenscompany" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/company/powens" target="_blank">LinkedIn</a>
+      </div>
+      <p class="footer-copyright">© 2024 Powens. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <powens-webview></powens-webview>
+</body>
+
+</html>
