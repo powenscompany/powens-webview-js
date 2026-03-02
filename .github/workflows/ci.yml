@@ -24,3 +24,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify docs generation
+        run: npm run docs

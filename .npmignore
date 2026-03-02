@@ -6,3 +6,5 @@ scripts/
 *.test.ts
 tsup.config.ts
 tsconfig*.json
+docs/
+typedoc.json

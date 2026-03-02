@@ -193,6 +193,18 @@ Check out the [sample projects](https://github.com/powenscompany/powens-webview-
 - [React](https://github.com/powenscompany/powens-webview-js/tree/main/examples/react) - React 19 + TypeScript
 - [Angular](https://github.com/powenscompany/powens-webview-js/tree/main/examples/angular) - Angular 19 + Standalone Components
 
+## API Documentation
+
+This project uses [TypeDoc](https://typedoc.org/) to generate API documentation from source code and JSDoc comments.
+
+### Generate the docs
+
+```bash
+npm run docs
+```
+
+The generated documentation is output to the `docs/` directory.
+
 ## Running TypeScript Scripts
 
 This project uses [tsx](https://tsx.is/) to execute TypeScript scripts locally in a Node.js environment.

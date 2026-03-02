@@ -21,6 +21,7 @@
     "clean": "rm -rf lib",
     "format": "prettier --write src/ scripts/",
     "format:check": "prettier --check src/ scripts/",
+    "docs": "typedoc",
     "prepublishOnly": "npm run build",
     "script": "tsx scripts/example.ts"
   },
@@ -34,6 +35,7 @@
     "@types/node": "^25.3.3",
     "prettier": "^3.8.1",
     "tsx": "^4.21.0",
+    "typedoc": "^0.28.17",
     "typescript": "^5.9.3"
   }
 }
