@@ -19,6 +19,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -28,6 +30,7 @@
   "author": "Powens (https://powens.com)",
   "license": "LGPL-3.0",
   "devDependencies": {
+    "prettier": "^3.8.1",
     "typescript": "^5.9.3"
   }
 }
