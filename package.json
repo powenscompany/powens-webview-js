@@ -19,9 +19,10 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
-    "format": "prettier --write src/",
-    "format:check": "prettier --check src/",
-    "prepublishOnly": "npm run build"
+    "format": "prettier --write src/ scripts/",
+    "format:check": "prettier --check src/ scripts/",
+    "prepublishOnly": "npm run build",
+    "script": "tsx scripts/example.ts"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,9 @@
   "author": "Powens (https://powens.com)",
   "license": "LGPL-3.0",
   "devDependencies": {
+    "@types/node": "^25.3.3",
     "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

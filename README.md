@@ -193,6 +193,24 @@ Check out the [sample projects](https://github.com/powenscompany/powens-webview-
 - [React](https://github.com/powenscompany/powens-webview-js/tree/main/examples/react) - React 19 + TypeScript
 - [Angular](https://github.com/powenscompany/powens-webview-js/tree/main/examples/angular) - Angular 19 + Standalone Components
 
+## Running TypeScript Scripts
+
+This project uses [tsx](https://tsx.is/) to execute TypeScript scripts locally in a Node.js environment.
+
+### Run the example script
+
+```bash
+npm run script
+```
+
+### Run any TypeScript file directly
+
+```bash
+npx tsx scripts/my-script.ts
+```
+
+Scripts are located in the `scripts/` directory and use a separate `tsconfig.node.json` for Node-specific type-checking (no DOM types, NodeNext module resolution).
+
 ## Types Reference
 
 For more information about Webview flows, parameters and callback parameters, please check [our documentation](https://docs.powens.com/api-reference/overview/webview#implementation-guidelines).

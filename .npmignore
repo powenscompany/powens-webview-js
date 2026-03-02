@@ -1,0 +1,8 @@
+src/
+examples/
+scripts/
+.github/
+*.log
+*.test.ts
+tsup.config.ts
+tsconfig*.json
