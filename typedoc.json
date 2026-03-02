@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "tsconfig": "tsconfig.json",
+  "name": "Powens Webview JS",
+  "readme": "README.md",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "excludeNotDocumented": false
+}
