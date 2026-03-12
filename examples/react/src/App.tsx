@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react';
 import PowensWebviewElement, { PowensWebviewFlow, PowensWebviewLanguage, PowensWebviewMessage } from '@powenscompany/webview-js';
-import './App.css'
-
-const PowensWebview = () => {
-  return <powens-webview/>;
-};
+import './App.css';
 
 function App() {
+  const webviewRef = useRef<PowensWebviewElement>(null);
   const [showJson, setShowJson] = useState(false);
   const [jsonData, setJsonData] = useState('');
 
   useEffect(() => {
-    const messageEventListener = (event: MessageEvent<PowensWebviewMessage>) => {
+    const handleMessage = (event: MessageEvent<PowensWebviewMessage>) => {
       if (event.origin !== window.origin) return;
       if (event.data.type !== 'powensWebviewTermination') return;
 
@@ -20,34 +17,37 @@ function App() {
       setJsonData(JSON.stringify(powensResult, undefined, 2));
     };
 
-    window.addEventListener('message', messageEventListener);
-    return () => window.removeEventListener('message', messageEventListener);
-  });
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
-  const open = () => {
+  const open = useCallback(() => {
     setShowJson(false);
 
-    const powensWebview = document.querySelector('powens-webview') as PowensWebviewElement;
-    powensWebview.options = {
+    if (!webviewRef.current) return;
+    
+    webviewRef.current.options = {
       flow: PowensWebviewFlow.Connect,
       domain: 'integrate.biapi.pro',
       clientId: '28105838',
       lang: PowensWebviewLanguage.English,
       redirectUri: window.location.origin,
     };
-    powensWebview.openWebview();
-  };
+    webviewRef.current.openWebview();
+  }, []);
 
   return (
     <>
       <h1 onClick={open}>🖼️</h1>
-      {showJson && <section id="json">
-        <h2>Received data from Powens Webview</h2>
-        <pre>{jsonData}</pre>
-      </section>}
-      <PowensWebview />
+      {showJson && (
+        <section id="json">
+          <h2>Received data from Powens Webview</h2>
+          <pre>{jsonData}</pre>
+        </section>
+      )}
+      <powens-webview ref={webviewRef} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

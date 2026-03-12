@@ -1,6 +1,8 @@
 <h1 (click)="open()">🖼️</h1>
-<section *ngIf="shouldShowJson" id="json">
-  <h2>Received data from Powens Webview</h2>
-  <pre>{{ jsonData }}</pre>
-</section>
+@if (shouldShowJson) {
+  <section id="json">
+    <h2>Received data from Powens Webview</h2>
+    <pre>{{ jsonData }}</pre>
+  </section>
+}
 <powens-webview #webview></powens-webview>

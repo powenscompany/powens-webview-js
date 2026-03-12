@@ -13,15 +13,19 @@ h1 {
 #json {
   max-width: 60vw;
   margin: 32px auto;
-  h2 { margin: 0 }
-  pre {
-      margin: 8px 0 0;
-      padding: 8px 16px;
-      border-radius: 10px;
-      word-break: break-all;
-      white-space: pre-wrap;
-      font-family: "Space Mono";
-      color: white;
-      background: rgba(0, 0, 0, .7);
-  }
+}
+
+h2 {
+  margin: 0;
+}
+
+pre {
+  margin: 8px 0 0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  font-family: "Space Mono";
+  color: white;
+  background: rgba(0, 0, 0, .7);
 }

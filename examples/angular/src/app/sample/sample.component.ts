@@ -1,10 +1,12 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import PowensWebviewElement, { PowensWebviewFlow, PowensWebviewLanguage, PowensWebviewMessage } from '@powenscompany/webview-js';
 
 @Component({
   selector: 'app-sample',
+  standalone: true,
   templateUrl: './sample.component.html',
-  styleUrls: ['./sample.component.scss']
+  styleUrl: './sample.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SampleComponent implements OnInit, OnDestroy {
   @ViewChild('webview') webview!: ElementRef<PowensWebviewElement>;
