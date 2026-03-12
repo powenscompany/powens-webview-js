@@ -1,6 +1,6 @@
 {
   "name": "@powenscompany/webview-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This web component allows you to quickly and easily implement aggregation journeys and integrate the Powens Webview in your JavaScript & TypeScript projects.",
   "homepage": "https://github.com/powenscompany/powens-webview-js",
   "type": "module",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/powenscompany/powens-webview-js.git"
+    "url": "git+https://github.com/powenscompany/powens-webview-js.git"
   },
   "author": "Powens (https://powens.com)",
   "license": "LGPL-3.0",
