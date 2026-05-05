@@ -1,8 +1,33 @@
-<h1 (click)="open()">🖼️</h1>
+<div class="card">
+  <img
+    class="logo"
+    src="https://www.powens.com/wp-content/uploads/2024/09/powens_logo_Gradient-3.svg"
+    alt="Powens"
+  />
+  <h1>Connect your financial data</h1>
+  <p class="subtitle">
+    Link your bank account in a few simple steps using the Powens Webview.
+  </p>
+  <button (click)="open()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+    Connect your bank
+  </button>
+  <span class="badge">Angular</span>
+</div>
+
 @if (shouldShowJson) {
-  <section id="json">
-    <h2>Received data from Powens Webview</h2>
+  <section class="result-card">
+    <div class="result-header">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      Webview response
+    </div>
     <pre>{{ jsonData }}</pre>
   </section>
 }
+
 <powens-webview #webview></powens-webview>
