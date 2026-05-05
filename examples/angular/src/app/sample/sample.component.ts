@@ -30,8 +30,8 @@ export class SampleComponent implements OnInit, OnDestroy {
       flow: PowensWebviewFlow.Connect,
       domain: 'integrate.biapi.pro',
       clientId: '28105838',
-      lang: PowensWebviewLanguage.English,
       redirectUri: window.location.origin,
+      lang: PowensWebviewLanguage.English,
     };
     this.webview.nativeElement.openWebview();
   }

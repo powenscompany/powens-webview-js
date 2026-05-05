@@ -30,8 +30,8 @@ function App() {
       flow: PowensWebviewFlow.Connect,
       domain: 'integrate.biapi.pro',
       clientId: '28105838',
-      lang: PowensWebviewLanguage.English,
       redirectUri: window.location.origin,
+      lang: PowensWebviewLanguage.English,
     };
     webviewRef.current.openWebview();
   }, []);

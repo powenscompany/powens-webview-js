@@ -62,7 +62,6 @@ function init() {
     accountTypes: { input: $('accountTypes'), group: $('accountTypes-group'), type: 'array' },
     accountIbans: { input: $('accountIbans'), group: $('accountIbans-group'), type: 'array' },
     accountUsages: { input: $('accountUsages'), group: $('accountUsages-group'), type: 'array' },
-    maxConnections: { input: $('maxConnections'), group: $('maxConnections-group'), type: 'number' },
     connectorFieldValues: { input: $('connectorFieldValues'), group: $('connectorFieldValues-group'), type: 'json' },
     resetCredentials: { input: $('resetCredentials'), group: $('resetCredentials-group'), type: 'boolean' },
     connectionSources: { input: $('connectionSources'), group: $('connectionSources-group'), type: 'array' },
@@ -78,26 +77,26 @@ function init() {
       redirectUri: 'required', code: 'optional', connectionId: false, paymentId: false,
       state: 'optional', connectorIds: 'optional', connectorUuids: 'optional',
       connectorCapabilities: 'optional', connectorCountry: 'optional', accountTypes: 'optional',
-      accountIbans: 'optional', accountUsages: 'optional', maxConnections: 'optional',
+      accountIbans: 'optional', accountUsages: 'optional',
       connectorFieldValues: 'optional', resetCredentials: false, connectionSources: false,
     },
     reconnect: {
       redirectUri: 'required', code: 'required', connectionId: 'required', paymentId: false,
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: false,
       connectorCountry: false, accountTypes: false, accountIbans: false, accountUsages: false,
-      maxConnections: false, connectorFieldValues: false, resetCredentials: 'optional', connectionSources: 'optional',
+      connectorFieldValues: false, resetCredentials: 'optional', connectionSources: 'optional',
     },
     manage: {
       redirectUri: 'optional', code: 'required', connectionId: 'optional', paymentId: false,
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: 'optional',
       connectorCountry: 'optional', accountTypes: 'optional', accountIbans: false, accountUsages: 'optional',
-      maxConnections: false, connectorFieldValues: false, resetCredentials: false, connectionSources: false,
+      connectorFieldValues: false, resetCredentials: false, connectionSources: false,
     },
     payment: {
       redirectUri: 'required', code: 'required', connectionId: false, paymentId: 'required',
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: false,
       connectorCountry: 'optional', accountTypes: false, accountIbans: false, accountUsages: false,
-      maxConnections: false, connectorFieldValues: false, resetCredentials: false, connectionSources: false,
+      connectorFieldValues: false, resetCredentials: false, connectionSources: false,
     },
   };
 
@@ -208,7 +207,6 @@ function init() {
   // Generate code preview string
   function generateCodePreview(options) {
     const lines = [];
-    const config = FLOW_FIELDS_CONFIG[options.flow];
 
     lines.push(`  flow: PowensWebviewFlow.${FLOW_ENUM[options.flow]},`);
     if (options.domain) lines.push(`  domain: "${options.domain}",`);
@@ -221,7 +219,7 @@ function init() {
     });
 
     // Number fields
-    ['connectionId', 'paymentId', 'maxConnections'].forEach(key => {
+    ['connectionId', 'paymentId'].forEach(key => {
       if (options[key]) lines.push(`  ${key}: ${options[key]},`);
     });
 
