@@ -109,7 +109,7 @@ export default class PowensWebviewElement extends HTMLElement {
     dialog.innerHTML = `
       <div class="confirm-content">
         <div class="confirm-logo">
-          <img src="https://www.powens.com/wp-content/uploads/2024/09/powens_logo_Gradient-3.svg" alt="Powens" />
+          <img src="https://s3.eu-west-1.amazonaws.com/irl-assets.unnax.com/logos/Powens_logo_blue.svg" alt="Powens" />
         </div>
         <h3 class="confirm-title">Close this window?</h3>
         <p class="confirm-message">If you close, your progress will be lost and you'll need to start again.</p>

@@ -35,7 +35,7 @@ function App() {
       <div className="card">
         <img
           className="logo"
-          src="https://www.powens.com/wp-content/uploads/2024/09/powens_logo_Gradient-3.svg"
+          src="https://s3.eu-west-1.amazonaws.com/irl-assets.unnax.com/logos/Powens_logo_blue.svg"
           alt="Powens"
         />
         <h1>Connect your financial data</h1>
