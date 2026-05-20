@@ -74,15 +74,14 @@ const powensWebview = document.querySelector('powens-webview') as PowensWebviewE
 
 // Configure Webview and opening parameters
 powensWebview.options = {
- flow: PowensWebviewFlow.Connect, // ‘connect’
-  domain: 'domain.biapi.pro',
+  flow: PowensWebviewFlow.Connect, // ‘connect’
+  domain: ‘domain.biapi.pro’,
   clientId: ‘2307407’,
   redirectUri: window.location.origin,
   lang: PowensWebviewLanguage.English, // ‘en’
-  code: 'COj_wSfkqm1rpS8UYFMCK481VVCv1xy8YZu...zSerIrMZyRBIQPWQlXgPuY0Z/7F0Ig6Gvuw',
-  maxConnections: 3,
-  connectorCapabilities: ['bank', 'bankwealth', 'document'],
-  accountTypes: ['card', 'checking', 'market', 'perco'],
+  code: ‘COj_wSfkqm1rpS8UYFMCK481VVCv1xy8YZu...zSerIrMZyRBIQPWQlXgPuY0Z/7F0Ig6Gvuw’,
+  connectorCapabilities: [‘bank’, ‘bankwealth’, ‘document’],
+  accountTypes: [‘card’, ‘checking’, ‘market’, ‘perco’],
   // [...]
 };
 
@@ -135,17 +134,22 @@ export class AppComponent {
 
 ### React
 
-Declare the `powens-webview` custom element to be able to use it in your JSX & TSX code
+Declare the `powens-webview` custom element in a `vite-env.d.ts` file to use it in your JSX & TSX code:
 ```tsx
+// src/vite-env.d.ts
+/// <reference types="vite/client" />
+
 import type { DetailedHTMLProps, HTMLAttributes, RefObject } from 'react';
 import type PowensWebviewElement from '@powenscompany/webview-js';
+
+type PowensWebviewProps = DetailedHTMLProps<HTMLAttributes<PowensWebviewElement>, PowensWebviewElement> & {
+  ref?: RefObject<PowensWebviewElement | null>;
+};
 
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
-      'powens-webview': DetailedHTMLProps<HTMLAttributes<PowensWebviewElement>, PowensWebviewElement> & {
-        ref?: RefObject<PowensWebviewElement | null>;
-      };
+      'powens-webview': PowensWebviewProps;
     }
   }
 }
@@ -251,12 +255,11 @@ Example
 ```typescript
 powensWebview.options = {
   flow: PowensWebviewFlow.Connect,
-  domain: 'domain.biapi.pro',
+  domain: ‘domain.biapi.pro’,
   clientId: ‘2307407’,
   redirectUri: window.location.origin,
   lang: PowensWebviewLanguage.English,
-  code: 'COj_wSfkqm1rpS8UYFMCK481VVCv1xy8YZu...zSerIrMZyRBIQPWQlXgPuY0Z/7F0Ig6Gvuw',
-  maxConnections: 3,
+  code: ‘COj_wSfkqm1rpS8UYFMCK481VVCv1xy8YZu...zSerIrMZyRBIQPWQlXgPuY0Z/7F0Ig6Gvuw’,
   connectorUuids: [
     '338178e6-3d01-564f-9a7b-52ca442459bf',
     '07d76adf-ae35-5b38-aca8-67aafba13169',

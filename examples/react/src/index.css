@@ -1,7 +1,15 @@
-html {
-  background-color: #e6f7ff;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-  body {
-      margin: 0;
-  }
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Fira Sans", system-ui, sans-serif;
+  font-size: 16px;
+  background: #f2f2f7;
+  color: #1d1d1f;
 }

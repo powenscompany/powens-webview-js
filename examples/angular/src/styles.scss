@@ -1,7 +1,14 @@
-html {
-    background-color: #fb9696;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-    body {
-        margin: 0;
-    }
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Fira Sans", system-ui, sans-serif;
+    font-size: 16px;
+    background: #f2f2f7;
+    color: #1d1d1f;
 }
