@@ -51,6 +51,7 @@ export interface PowensWebviewOptions {
   resetCredentials?: true;
   sources?: string[];
   paymentId?: number;
+  notifyAndCloseExternalTab?: true;
 }
 
 export interface PowensWebviewMessage {

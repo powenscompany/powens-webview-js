@@ -249,6 +249,7 @@ interface PowensWebviewOptions {
   resetCredentials?: true;
   sources?: string[];
   paymentId?: number;
+  notifyAndCloseExternalTab?: true;
 }
 ```
 Example
@@ -282,6 +283,7 @@ powensWebview.options = {
   state: 'MY_STATE',
   connectionId: 46,
   resetCredentials: true,
+  notifyAndCloseExternalTab: true,
 };
 ```
 ### PowensWebviewResult

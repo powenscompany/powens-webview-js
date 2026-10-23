@@ -11,6 +11,7 @@ function init() {
   const domainInput = $('domain');
   const clientIdInput = $('clientId');
   const langSelect = $('lang');
+  const notifyAndCloseExternalTabInput = $('notifyAndCloseExternalTab');
 
   // Output elements
   const codePreview = $('code-preview');
@@ -160,6 +161,7 @@ function init() {
     const options = { flow, domain: domainInput.value, clientId: clientIdInput.value };
 
     if (langSelect.value) options.lang = langSelect.value;
+    if (notifyAndCloseExternalTabInput.checked) options.notifyAndCloseExternalTab = true;
 
     // Process dual fields
     Object.keys(dualFields).forEach(name => {
@@ -239,8 +241,9 @@ function init() {
       lines.push(`  connectorFieldValues: ${formatted},`);
     }
 
-    // Boolean field
+    // Boolean fields
     if (options.resetCredentials) lines.push(`  resetCredentials: true,`);
+    if (options.notifyAndCloseExternalTab) lines.push(`  notifyAndCloseExternalTab: true,`);
 
     return `webview.options = {\n${lines.join('\n')}\n};`;
   }
@@ -287,7 +290,7 @@ function init() {
 
   // Watch all inputs for code preview updates
   const allInputs = [
-    domainInput, clientIdInput, langSelect,
+    domainInput, clientIdInput, langSelect, notifyAndCloseExternalTabInput,
     ...Object.values(dualFields).flatMap(f => [f.requiredInput, f.optionalInput]),
     ...Object.values(simpleFields).map(f => f.input),
   ].filter(Boolean);
