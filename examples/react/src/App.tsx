@@ -26,6 +26,7 @@ function App() {
       clientId: '28105838',
       redirectUri: window.location.origin,
       lang: PowensWebviewLanguage.English,
+      notifyAndCloseExternalTab: true,
     };
     webviewRef.current.openWebview();
   }, []);

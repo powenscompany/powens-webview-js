@@ -32,6 +32,7 @@ export class SampleComponent implements OnInit, OnDestroy {
       clientId: '28105838',
       redirectUri: window.location.origin,
       lang: PowensWebviewLanguage.English,
+      notifyAndCloseExternalTab: true,
     };
     this.webview.nativeElement.openWebview();
   }
