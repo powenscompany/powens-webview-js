@@ -23,6 +23,7 @@ openBtn.addEventListener('click', () => {
     clientId: '28105838',
     redirectUri: window.location.origin,
     lang: 'en',
+    notifyAndCloseExternalTab: true,
   };
   
   powensWebview.openWebview();
