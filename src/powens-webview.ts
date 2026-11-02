@@ -38,18 +38,18 @@ export interface PowensWebviewOptions {
   lang?: PowensWebviewLanguage;
   code?: string;
   redirectUri?: string;
+  /** @deprecated */
   maxConnections?: number;
+  connectorIds?: number[];
   connectorUuids?: string[];
   connectorCapabilities?: string[];
-  connectorCountry?: string;
   connectorFieldValues?: Record<string, Record<string, string>>;
   accountTypes?: string[];
-  accountUsages?: string[];
   accountIbans?: string[];
   state?: string;
   connectionId?: number;
   resetCredentials?: true;
-  sources?: string[];
+  connectionSources?: string[];
   paymentId?: number;
   notifyAndCloseExternalTab?: true;
 }

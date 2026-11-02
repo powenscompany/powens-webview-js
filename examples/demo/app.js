@@ -52,17 +52,15 @@ function init() {
   };
 
   // Simple fields configuration: { inputElement, groupElement, type }
-  // type: 'string' | 'number' | 'array' | 'json' | 'boolean' | 'country'
+  // type: 'string' | 'number' | 'array' | 'json' | 'boolean'
   const simpleFields = {
     paymentId: { input: $('paymentId'), group: $('paymentId-group'), type: 'number' },
     state: { input: $('state'), group: $('state-group'), type: 'string' },
     connectorIds: { input: $('connectorIds'), group: $('connectorIds-group'), type: 'array' },
     connectorUuids: { input: $('connectorUuids'), group: $('connectorUuids-group'), type: 'array' },
     connectorCapabilities: { input: $('connectorCapabilities'), group: $('connectorCapabilities-group'), type: 'array' },
-    connectorCountry: { input: $('connectorCountry'), group: $('connectorCountry-group'), type: 'country' },
     accountTypes: { input: $('accountTypes'), group: $('accountTypes-group'), type: 'array' },
     accountIbans: { input: $('accountIbans'), group: $('accountIbans-group'), type: 'array' },
-    accountUsages: { input: $('accountUsages'), group: $('accountUsages-group'), type: 'array' },
     connectorFieldValues: { input: $('connectorFieldValues'), group: $('connectorFieldValues-group'), type: 'json' },
     resetCredentials: { input: $('resetCredentials'), group: $('resetCredentials-group'), type: 'boolean' },
     connectionSources: { input: $('connectionSources'), group: $('connectionSources-group'), type: 'array' },
@@ -77,26 +75,25 @@ function init() {
     connect: {
       redirectUri: 'required', code: 'optional', connectionId: false, paymentId: false,
       state: 'optional', connectorIds: 'optional', connectorUuids: 'optional',
-      connectorCapabilities: 'optional', connectorCountry: 'optional', accountTypes: 'optional',
-      accountIbans: 'optional', accountUsages: 'optional',
+      connectorCapabilities: 'optional', accountTypes: 'optional', accountIbans: 'optional',
       connectorFieldValues: 'optional', resetCredentials: false, connectionSources: false,
     },
     reconnect: {
       redirectUri: 'required', code: 'required', connectionId: 'required', paymentId: false,
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: false,
-      connectorCountry: false, accountTypes: false, accountIbans: false, accountUsages: false,
+      accountTypes: false, accountIbans: false,
       connectorFieldValues: false, resetCredentials: 'optional', connectionSources: 'optional',
     },
     manage: {
       redirectUri: 'optional', code: 'required', connectionId: 'optional', paymentId: false,
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: 'optional',
-      connectorCountry: 'optional', accountTypes: 'optional', accountIbans: false, accountUsages: 'optional',
+      accountTypes: 'optional', accountIbans: false,
       connectorFieldValues: false, resetCredentials: false, connectionSources: false,
     },
     payment: {
       redirectUri: 'required', code: 'required', connectionId: false, paymentId: 'required',
       state: 'optional', connectorIds: false, connectorUuids: false, connectorCapabilities: false,
-      connectorCountry: 'optional', accountTypes: false, accountIbans: false, accountUsages: false,
+      accountTypes: false, accountIbans: false,
       connectorFieldValues: false, resetCredentials: false, connectionSources: false,
     },
   };
@@ -185,9 +182,6 @@ function init() {
         case 'number':
           value = input.value ? parseInt(input.value, 10) : null;
           break;
-        case 'country':
-          value = input.value ? input.value.toUpperCase() : null;
-          break;
         case 'array':
           const arr = parseArray(input.value);
           value = arr.length ? arr : null;
@@ -225,13 +219,8 @@ function init() {
       if (options[key]) lines.push(`  ${key}: ${options[key]},`);
     });
 
-    // Country field (special case with uppercase)
-    if (options.connectorCountry) {
-      lines.push(`  connectorCountry: "${options.connectorCountry}",`);
-    }
-
     // Array fields
-    ['connectorIds', 'connectorUuids', 'connectorCapabilities', 'accountTypes', 'accountIbans', 'accountUsages', 'connectionSources'].forEach(key => {
+    ['connectorIds', 'connectorUuids', 'connectorCapabilities', 'accountTypes', 'accountIbans', 'connectionSources'].forEach(key => {
       if (options[key]?.length) lines.push(`  ${key}: ${JSON.stringify(options[key])},`);
     });
 
