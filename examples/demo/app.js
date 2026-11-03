@@ -52,11 +52,11 @@ function init() {
   };
 
   // Simple fields configuration: { inputElement, groupElement, type }
-  // type: 'string' | 'number' | 'array' | 'json' | 'boolean'
+  // type: 'string' | 'number' | 'array' | 'numberArray' | 'json' | 'boolean'
   const simpleFields = {
     paymentId: { input: $('paymentId'), group: $('paymentId-group'), type: 'number' },
     state: { input: $('state'), group: $('state-group'), type: 'string' },
-    connectorIds: { input: $('connectorIds'), group: $('connectorIds-group'), type: 'array' },
+    connectorIds: { input: $('connectorIds'), group: $('connectorIds-group'), type: 'numberArray' },
     connectorUuids: { input: $('connectorUuids'), group: $('connectorUuids-group'), type: 'array' },
     connectorCapabilities: { input: $('connectorCapabilities'), group: $('connectorCapabilities-group'), type: 'array' },
     accountTypes: { input: $('accountTypes'), group: $('accountTypes-group'), type: 'array' },
@@ -185,6 +185,10 @@ function init() {
         case 'array':
           const arr = parseArray(input.value);
           value = arr.length ? arr : null;
+          break;
+        case 'numberArray':
+          const nums = parseArray(input.value).map(Number).filter(Number.isInteger);
+          value = nums.length ? nums : null;
           break;
         case 'json':
           value = parseJson(input.value);
