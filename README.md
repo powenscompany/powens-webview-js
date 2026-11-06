@@ -236,18 +236,18 @@ interface PowensWebviewOptions {
   lang?: PowensWebviewLanguage;
   code?: string;
   redirectUri?: string;
+  /** @deprecated */
   maxConnections?: number;
+  connectorIds?: number[];
   connectorUuids?: string[];
   connectorCapabilities?: string[];
-  connectorCountry?: string;
   connectorFieldValues?: Record<string, Record<string, string>>;
   accountTypes?: string[];
-  accountUsages?: string[];
   accountIbans?: string[];
   state?: string;
   connectionId?: number;
   resetCredentials?: true;
-  sources?: string[];
+  connectionSources?: string[];
   paymentId?: number;
   notifyAndCloseExternalTab?: true;
 }
@@ -261,13 +261,13 @@ powensWebview.options = {
   redirectUri: window.location.origin,
   lang: PowensWebviewLanguage.English,
   code: ‘COj_wSfkqm1rpS8UYFMCK481VVCv1xy8YZu...zSerIrMZyRBIQPWQlXgPuY0Z/7F0Ig6Gvuw’,
+  connectorIds: [40, 59],
   connectorUuids: [
     '338178e6-3d01-564f-9a7b-52ca442459bf',
     '07d76adf-ae35-5b38-aca8-67aafba13169',
     '37bbb26d-d371-5333-bcea-1839b5283cec',
   ],
   connectorCapabilities: ['bank', 'bankwealth', 'document'],
-  connectorCountry: 'gb',
   connectorFieldValues: {
     '338178e6-3d01-564f-9a7b-52ca442459bf': {
       openapiwebsite: 'par',
@@ -278,11 +278,11 @@ powensWebview.options = {
     },
   },
   accountTypes: ['card', 'checking', 'market', 'perco'],
-  accountUsages: ['priv', 'orga'],
   accountIbans: ['FR7610107001011234567890129', 'FR7611315000011234567890138'],
   state: 'MY_STATE',
   connectionId: 46,
   resetCredentials: true,
+  connectionSources: ['openapi'],
   notifyAndCloseExternalTab: true,
 };
 ```
